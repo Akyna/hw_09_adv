@@ -12,9 +12,9 @@ public class Provider {
 
     // public volatile List<Record> list = Collections.synchronizedList(new ArrayList<>());
 
-    // public volatile CopyOnWriteArrayList<Record> list = new CopyOnWriteArrayList<>();
+     public volatile CopyOnWriteArrayList<Record> list = new CopyOnWriteArrayList<>();
 
-    public volatile Queue<Record> list = new ConcurrentLinkedQueue<>();
+//    public volatile Queue<Record> list = new ConcurrentLinkedQueue<>();
 
 
 }

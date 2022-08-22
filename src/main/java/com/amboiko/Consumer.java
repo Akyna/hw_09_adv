@@ -1,5 +1,8 @@
 package com.amboiko;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Consumer implements Runnable {
     private final Provider provider;
     private final Logger logger;
@@ -14,18 +17,18 @@ public class Consumer implements Runnable {
     public void run() {
         System.out.println("Consumer block started");
         int count = 0;
-        while (count < 100) {
+        while (count < 5) {
             count++;
             try {
                 Thread.sleep(4000);
                 synchronized (provider) {
+                    List<Integer> listForReport = new ArrayList<>();
                     for (Record r : provider.list) {
-                        // FIXME: не працює
-                        logger.setId(r.getId());
-                        Logger.flag.set(true);
+                        listForReport.add(r.getId());
                         provider.list.remove(r);
-                        System.out.println("REMOVED: " + r.getId());
                     }
+                    logger.setIds(listForReport);
+                    Logger.flag.set(true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

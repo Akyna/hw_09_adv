@@ -5,15 +5,16 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Provider provider = new Provider();
-        Logger logger = new Logger();
         FileManager fileManager = new FileManager("report/data.txt");
         try {
             fileManager.createFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Provider provider = new Provider();
+        Logger logger = new Logger(fileManager);
 
+        System.out.println(fileManager.getFile().exists());
         if (fileManager.getFile().exists()) {
             new Producer(provider);
             new Consumer(provider, logger);

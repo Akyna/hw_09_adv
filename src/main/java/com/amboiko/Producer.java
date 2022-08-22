@@ -16,14 +16,14 @@ public class Producer implements Runnable {
     public void run() {
         System.out.println("Producer block started");
         int count = 0;
-        while (count < 100) {
+        while (count < 20) {
             count++;
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 synchronized (provider) {
-                    int id = (int) (Math.random() * 100);
-                    provider.list.add(new Record(id));
-                    System.out.println("PRODUCED: " + id);
+//                    int id = (int) (Math.random() * 100);
+                    provider.list.add(new Record(count));
+                    System.out.println("PRODUCED: " + count);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
