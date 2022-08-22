@@ -15,10 +15,7 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Consumer block started");
-        int count = 0;
-        while (count < 5) {
-            count++;
+        while (true) {
             try {
                 Thread.sleep(4000);
                 synchronized (provider) {
